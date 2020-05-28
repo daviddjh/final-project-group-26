@@ -1,0 +1,28 @@
+{
+  "name": "qawebapp290",
+  "version": "0.0.0",
+  "description": "A forum where users can autonomously ask and answer questions.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osu-cs290-sp20/final-project-group-26.git"
+  },
+  "keywords": [
+    "Question",
+    "Answers",
+    "Forum"
+  ],
+  "author": "Group Proj",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osu-cs290-sp20/final-project-group-26/issues"
+  },
+  "homepage": "https://github.com/osu-cs290-sp20/final-project-group-26#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
