@@ -1,3 +1,11 @@
+/*
+    Notes:
+    Navbar sticks to left side of page.
+    Striped themes based on tags.
+    Change color scheme.
+    Change question display.
+*/
+
 body {
   font-family: Roboto, Helvetica, sans-serif;
   margin: 0;
