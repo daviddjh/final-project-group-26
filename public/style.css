@@ -1,4 +1,36 @@
 body {
   margin: 0;
   background-color: #eee;
+  font-family:sans-serif;
+}
+
+h1
+{
+  font-size:calc(25px + 0.5vw);
+  padding:15px;
+  margin-top:0;
+  margin-bottom:0;
+}
+
+.tagbar
+{
+  border: 3px black solid;
+}
+
+.tagbar ul
+{
+  
+}
+
+.tagbar ul li
+{
+  list-style-type: none;
+  display: inline-block;
+  width:10vw;
+  min-width:40px;
+  font-size:calc(15px + 0.5vw);
+  height:1.5vw;
+  padding:10px 5px;
+  margin:5px calc(15px + 1vw);
+  text-align:center;
 }
