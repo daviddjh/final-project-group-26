@@ -1,5 +1,195 @@
+<!DOCTYPE html>
 <html>
-	<body>
-		<h1>index</h1>
-	</body>
+  <head>
+
+    <meta charset="utf-8">
+    <title>Questions and Answers</title>
+		<link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+
+    <header>
+      <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
+      <a href="#"><h1 class="site-title"><i class="far fa-hand-lizard"></i> Questions.com</h1></a>
+
+      <nav class="navbar">
+        <ul class="navlist">
+          <li class="navitem navlink"><a href="#">Sports</a></li>
+          <li class="navitem navlink"><a href="#">Animals</a></li>
+					<li class="navitem navlink"><a href="#">News</a></li>
+					<li class="navitem navlink"><a href="#">Politics</a></li>
+					<li class="navitem navlink"><a href="#">Gaming</a></li>
+					<li class="navitem navlink"><a href="#">TV</a></li>
+					<li class="navitem navlink"><a href="#">How To</a></li>
+
+          <li class="navitem navbar-search">
+            <input type="text" id="navbar-search-input" placeholder="Search...">
+            <button type="button" id="navbar-search-button"><i class="fas fa-search"></i></button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="Question-Container">
+
+      <article class="question">
+        <div class="question-icon">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <div class="question-content">
+          <p class="question-text">
+            Why is Tom Brady so bad at football?
+          </p>
+          <p class="Tags">
+            <a href="#">Sports</a>
+          </p>
+					<p class="Comments">
+            <a href="#">Comment 1: this is the text for comment 1</a>
+						<a href="#">Comment 2: this is the text for comment 2</a>
+						<a href="#">Comment 3: this is the text for comment 3</a>
+          </p>
+        </div>
+      </article>
+
+			<article class="question">
+				<div class="question-icon">
+					<i class="fas fa-bullhorn"></i>
+				</div>
+				<div class="question-content">
+					<p class="question-text">
+						What is your favorite TV show?
+					</p>
+					<p class="Tags">
+						<a href="#">TV</a>
+					</p>
+					<p class="Comments">
+						<a href="#">Comment 1: this is the text for comment 1</a>
+						<a href="#">Comment 2: this is the text for comment 2</a>
+						<a href="#">Comment 3: this is the text for comment 3</a>
+					</p>
+				</div>
+			</article>
+
+			<article class="question">
+				<div class="question-icon">
+					<i class="fas fa-bullhorn"></i>
+				</div>
+				<div class="question-content">
+					<p class="question-text">
+						What is corona virus?
+					</p>
+					<p class="Tags">
+						<a href="#">News</a>
+					</p>
+					<p class="Comments">
+						<a href="#">Comment 1: this is the text for comment 1</a>
+						<a href="#">Comment 2: this is the text for comment 2</a>
+						<a href="#">Comment 3: this is the text for comment 3</a>
+					</p>
+				</div>
+			</article>
+
+			<article class="question">
+				<div class="question-icon">
+					<i class="fas fa-bullhorn"></i>
+				</div>
+				<div class="question-content">
+					<p class="question-text">
+						What is the best video game?
+					</p>
+					<p class="Tags">
+						<a href="#">Gaming</a>
+					</p>
+					<p class="Comments">
+						<a href="#">Comment 1: this is the text for comment 1</a>
+						<a href="#">Comment 2: this is the text for comment 2</a>
+						<a href="#">Comment 3: this is the text for comment 3</a>
+					</p>
+				</div>
+			</article>
+
+			<article class="question">
+				<div class="question-icon">
+					<i class="fas fa-bullhorn"></i>
+				</div>
+				<div class="question-content">
+					<p class="question-text">
+						How do you get rid of a random cat?
+					</p>
+					<p class="Tags">
+						<a href="#">Animals</a>
+						<a href="#">How to </a>
+					</p>
+					<p class="Comments">
+						<a href="#">Comment 1: this is the text for comment 1</a>
+						<a href="#">Comment 2: this is the text for comment 2</a>
+						<a href="#">Comment 3: this is the text for comment 3</a>
+					</p>
+				</div>
+			</article>
+
+
+
+
+
+    </main>
+
+    <button type="button" id="create-question-button"><i class="fas fa-bullhorn"></i></button>
+
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-question-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h3>Create a Question</h3>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="comment-input-element">
+            <label for="twit-text-input">Question:</label>
+            <textarea id="question-text-input"></textarea>
+          </div>
+          <div class="question-input-element">
+            <label for="comment-tag-input">Tag</label>
+            <input type="text" id="comment-tag-input">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-return-button">Return</button>
+          <button type="button" class="modal-add-button">Create Question</button>
+        </div>
+
+      </div>
+    </div>
+
+		<div id="modal-backdrop" class="hidden"></div>
+		<div id="create-comment-modal" class="hidden">
+			<div class="modal-dialog">
+
+				<div class="modal-header">
+					<h3>Create a Comment</h3>
+					<button type="button" class="modal-close-button">&times;</button>
+				</div>
+
+				<div class="modal-body">
+					<div class="comment-input-element">
+						<label for="twit-text-input">Comment:</label>
+						<textarea id="comment-text-input"></textarea>
+					</div>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="modal-return-button">Return</button>
+					<button type="button" class="modal-add-button">Create Comment</button>
+				</div>
+
+			</div>
+		</div>
+
+
+  </body>
+
 </html>
