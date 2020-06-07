@@ -7,10 +7,18 @@
 */
 
 body {
-  font-family: Roboto, Helvetica, sans-serif;
+  font-family: 'Cabin';
+  font-size:20px;
   margin: 0;
-  background-color: #eee;
-  font-family:sans-serif;
+
+  --sports_color:#f78492;
+  --animals-color:#f7b084;
+  --news_color:#f7e984;
+  --politics_color:#cbf784;
+  --gaming_color:#84f7b0;
+
+  background-color: #e5fff6;
+  background-image: url("img/60-lines.png");
 }
 
 a {
@@ -20,22 +28,23 @@ a {
 .site-title {
   margin: 0;
   padding: 10px 20px;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 100;
   background-color:#f78492;
   color: #fff;
+  font-family: 'Balsamiq Sans', cursive;
 }
 
 .navbar {
   background-color: #fff;
   font-size: 22px;
   line-height: 22px;
-  position:fixed;
-  height:266px;
+  height:190px;
   width:150px;
   margin:5px;
   padding-top:10px;
   padding-bottom:10px;
+  float:left;
 }
 
 .Question-Container
@@ -77,44 +86,6 @@ a:focus {
   box-shadow: inset 0 -3px #319df6;
 }
 
-.navbar-search {
-  float: right;
-  margin-right: 20px;
-  padding: 0;
-  line-height: 38px;
-}
-
-#navbar-search-input {
-  padding: 4px;
-  font-size: 16px;
-  background-color: #eee;
-  border: 1px solid #dadada;
-  border-radius: 2px;
-}
-
-#navbar-search-input:focus {
-  outline: none;
-  background-color: #fff;
-}
-
-#navbar-search-button {
-  margin-left: -5px;
-  font-size: 16px;
-  background: none;
-  border: none;
-  color: #343434;
-  cursor: pointer;
-}
-
-#navbar-search-button:hover {
-  color: #319df6;
-}
-
-#navbar-search-button:focus {
-  color: #319df6;
-  outline: none;
-}
-
 .change {
   margin: 50px 10%;
   display: flex;
@@ -129,16 +100,50 @@ a:focus {
   border: 1px solid #dadada;
   border-radius: 2px;
   background-color: #fff;
-}
-
-.tag_sport
-{
-  border-top:darkred solid 3px;
   
 }
 
-.twit-icon {
-  font-size: 24px;
+.question-icon {
+  font-size: 26px;
+  font-weight:bold;
+}
+
+.question-icon p
+{
+  border:2px black solid;
+  border-radius:50%;
+  padding:0px 8px;
+}
+
+#create-question-button p
+{
+  padding:0;
+  margin:0;
+}
+
+#sportsnav:hover
+{
+  background-color:var(--sports_color);
+}
+
+#animalssnav:hover
+{
+  background-color:var(--animals-color);
+}
+
+#newsnav:hover
+{
+  background-color:var(--news_color);
+}
+
+#politicsnav:hover
+{
+  background-color:var(--politics_color);
+}
+
+#gamingnav:hover
+{
+  background-color:var(--gaming_color);
 }
 
 .question-content {
@@ -146,17 +151,18 @@ a:focus {
   margin-left: 10px;
 }
 
-.question-content p {
-  margin: 0;
+.question-content p
+{
+  margin:0;
 }
 
-.twit-content .twit-author {
+.question-content .question-author {
   margin-top: 8px;
   text-align: right;
   font-weight: bold;
 }
 
-#create-twit-button {
+#create-question-button {
   position: fixed;
   right: 30px;
   bottom: 30px;
@@ -165,24 +171,24 @@ a:focus {
   border: none;
   border-radius: 30px;
   font-size: 30px;
-  background-color: #ff1010;
+  background-color: var(--sports_color);
   color: #fff;
   cursor: pointer;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
 }
 
-#create-twit-button:hover,
-#create-twit-button:focus {
+#create-question-button:hover,
+#create-question-button:focus {
   right: 27px;
   bottom: 27px;
   height: 66px;
   width: 66px;
   border-radius: 33px;
   font-size: 36px;
-  background-color: #319df6;
+  background-color: var(--animals-color);
 }
 
-#create-twit-button:focus {
+#create-question-button:focus {
   outline: none;
 }
 
@@ -196,7 +202,7 @@ a:focus {
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-#create-twit-modal {
+#create-question-modal {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -245,29 +251,29 @@ a:focus {
   padding: 20px;
 }
 
-.twit-input-element {
+.question-text-input
+{
+  padding:20px;
+}
+
+.question-input-element {
   display: flex;
   align-items: center;
   font-size: 20px;
   margin: 10px 0;
 }
 
-.twit-input-element label {
-  font-weight: 600;
+.question-input-element label {
   flex: 1 75px;
   margin-right: 10px;
 }
 
-.twit-input-element input,
-.twit-input-element textarea {
+.question-input-element input,
+.question-input-element textarea {
   flex: 6 200px;
   padding: 8px;
   font-size: 20px;
   border: 1px solid #aaa;
-}
-
-.twit-input-element textarea {
-  min-height: 64px;
 }
 
 .modal-footer {
@@ -287,17 +293,17 @@ a:focus {
   cursor: pointer;
 }
 
-.modal-footer .modal-cancel-button:hover {
+.modal-footer .modal-return-button:hover {
   background-color: #eee;
 }
 
-.modal-footer .modal-accept-button {
-  background-color: #319df6;
+.modal-footer .modal-add-button {
+  background-color: var(--sports_color);
   color: #fff;
 }
 
-.modal-footer .modal-accept-button:hover {
-  background-color: #087dde;
+.modal-footer .modal-add-button:hover {
+  background-color: var(--animals-color);
 }
 
 .error-container {

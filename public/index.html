@@ -18,23 +18,25 @@
     <meta charset="utf-8">
     <title>Questions and Answers</title>
 		<link rel="stylesheet" href="style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet"> <!-- Title font -->
+		<link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">     <!--  Main font -->
   </head>
 
   <body>
 
     <header>
       <!-- The <i> tag below includes the bullhorn icon from Font Awesome -->
-      <a href="#"><h1 class="site-title"><i class="far fa-hand-lizard"></i> Questions.com</h1></a>
+      <a href="#"><h1 class="site-title"> Questions.com</h1></a>
 
       <nav class="navbar">
         <ul class="navlist">
-          <li class="navitem navlink"><a href="#">Sports</a></li>
-          <li class="navitem navlink"><a href="#">Animals</a></li>
-					<li class="navitem navlink"><a href="#">News</a></li>
-					<li class="navitem navlink"><a href="#">Politics</a></li>
-					<li class="navitem navlink"><a href="#">Gaming</a></li>
-					<li class="navitem navlink"><a href="#">TV</a></li>
-					<li class="navitem navlink"><a href="#">How To</a></li>
+          <li class="navitem navlink" id="sportsnav"><a href="#">Sports</a></li>
+          <li class="navitem navlink"id="animalssnav"><a href="#">Animals</a></li>
+					<li class="navitem navlink"id="newsnav"><a href="#">News</a></li>
+					<li class="navitem navlink"id="politicsnav"><a href="#">Politics</a></li>
+					<li class="navitem navlink"id="gamingnav"><a href="#">Gaming</a></li>
+					<!--</1__><li class="navitem navlink"id="tvnav"><a href="#">TV</a></li>
+					<li class="navitem navlink"id="howtonav"><a href="#">How To</a></li>-->
         </ul>
       </nav>
     </header>
@@ -42,8 +44,8 @@
     <main class="Question-Container">
 
       <article class="question">
-        <div class="question-icon">
-          <i class="fas fa-bullhorn"></i>
+        <div class="question-icon tag_sports">
+          <p>?</p>
         </div>
         <div class="question-content">
           <p class="question-text">
@@ -61,8 +63,8 @@
       </article>
 
 			<article class="question">
-				<div class="question-icon">
-					<i class="fas fa-bullhorn"></i>
+				<div class="question-icon tag_tv">
+					<p>?</p>
 				</div>
 				<div class="question-content">
 					<p class="question-text">
@@ -80,8 +82,8 @@
 			</article>
 
 			<article class="question">
-				<div class="question-icon">
-					<i class="fas fa-bullhorn"></i>
+				<div class="question-icon tag_news">
+					<p>?</p>
 				</div>
 				<div class="question-content">
 					<p class="question-text">
@@ -99,8 +101,8 @@
 			</article>
 
 			<article class="question">
-				<div class="question-icon">
-					<i class="fas fa-bullhorn"></i>
+				<div class="question-icon tag_gaming">
+					<p>?</p>
 				</div>
 				<div class="question-content">
 					<p class="question-text">
@@ -118,8 +120,8 @@
 			</article>
 
 			<article class="question">
-				<div class="question-icon">
-					<i class="fas fa-bullhorn"></i>
+				<div class="question-icon tag_animals">
+					<p>?</p>
 				</div>
 				<div class="question-content">
 					<p class="question-text">
@@ -143,10 +145,10 @@
 
     </main>
 
-    <button type="button" id="create-question-button"><i class="fas fa-bullhorn"></i></button>
+    <button type="button" id="create-question-button"><p>?</p></button>
 
-    <div id="modal-backdrop" class="hidden"></div>
-    <div id="create-question-modal" class="hidden">
+    <div id="modal-backdrop" class="hidde"></div>
+    <div id="create-question-modal" class="hidde">
       <div class="modal-dialog">
 
         <div class="modal-header">
@@ -155,13 +157,22 @@
         </div>
 
         <div class="modal-body">
-          <div class="comment-input-element">
-            <label for="twit-text-input">Question:</label>
+          <div class="question-input-element">
+            <label for="question-text-input">Enter your question:</label>
             <textarea id="question-text-input"></textarea>
           </div>
-          <div class="question-input-element">
-            <label for="comment-tag-input">Tag</label>
-            <input type="text" id="comment-tag-input">
+          <div class="tag_input_element">
+            <label for="tag_input">Tags:</label>
+				<input type="checkbox" id="tag1" name="sports" value="sports">
+					<label for="tag1">Sports</label>
+				<input type="checkbox" id="tag2" name="animals" value="animals">
+					<label for="tag2">Animals</label>
+				<input type="checkbox" id="tag3" name="news" value="news">
+					<label for="tag3">News</label>
+				<input type="checkbox" id="tag4" name="politics" value="politics">
+					<label for="tag4">Politics</label>
+				<input type="checkbox" id="tag5" name="gaming" value="gaming">
+					<label for="tag5">Gaming</label>
           </div>
         </div>
 
@@ -184,7 +195,7 @@
 
 				<div class="modal-body">
 					<div class="comment-input-element">
-						<label for="twit-text-input">Comment:</label>
+						<label for="question-text-input">Comment:</label>
 						<textarea id="comment-text-input"></textarea>
 					</div>
 				</div>
