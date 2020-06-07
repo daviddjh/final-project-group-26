@@ -11,6 +11,12 @@ body {
   margin: 0;
   background-color: #eee;
   font-family:sans-serif;
+
+  --sports_color:#f78492;
+  --animals-color:#f7b084;
+  --news_color:#f7e984;
+  --politics_color:#cbf784;
+  --gaming_color:#84f7b0;
 }
 
 a {
@@ -20,22 +26,23 @@ a {
 .site-title {
   margin: 0;
   padding: 10px 20px;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 100;
   background-color:#f78492;
   color: #fff;
+  font-family: 'Balsamiq Sans', cursive;
 }
 
 .navbar {
   background-color: #fff;
   font-size: 22px;
   line-height: 22px;
-  position:fixed;
-  height:266px;
+  height:190px;
   width:150px;
   margin:5px;
   padding-top:10px;
   padding-bottom:10px;
+  float:left;
 }
 
 .Question-Container
@@ -94,14 +101,70 @@ a:focus {
   
 }
 
-.tag_sport
-{
-  border-top:darkred solid 3px;
-  
-}
-
 .question-icon {
   font-size: 24px;
+  font-weight:bold;
+}
+
+.question-icon p
+{
+  border:2px black solid;
+  border-radius:50%;
+  padding:1px 6px;
+}
+
+/*
+All tags should be paired with the question-icon class and target the <p> element inside.
+*/
+
+.tag_sports p
+{
+  border:3px var(--sports_color) solid;
+}
+
+.tag_animals p
+{
+  border:3px var(--animals-color) solid;
+}
+
+.tag_news p
+{
+  border:3px var(--news_color) solid;
+}
+
+.tag_politics p
+{
+  border:3px var(--politics_color) solid;
+}
+
+.tag_gaming p
+{
+  border:3px var(--gaming_color) solid;
+}
+
+#sportsnav:hover
+{
+  background-color:var(--sports_color);
+}
+
+#animalssnav:hover
+{
+  background-color:var(--animals-color);
+}
+
+#newsnav:hover
+{
+  background-color:var(--news_color);
+}
+
+#politicsnav:hover
+{
+  background-color:var(--politics_color);
+}
+
+#gamingnav:hover
+{
+  background-color:var(--gaming_color);
 }
 
 .question-content {
@@ -109,8 +172,9 @@ a:focus {
   margin-left: 10px;
 }
 
-.question-content p {
-  margin: 0;
+.question-content p
+{
+  margin:0;
 }
 
 .question-content .question-author {
