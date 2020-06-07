@@ -147,8 +147,8 @@
 
     <button type="button" id="create-question-button"><p>?</p></button>
 
-    <div id="modal-backdrop" class="hidden"></div>
-    <div id="create-question-modal" class="hidden">
+    <div id="modal-backdrop" class="hidde"></div>
+    <div id="create-question-modal" class="hidde">
       <div class="modal-dialog">
 
         <div class="modal-header">
@@ -157,13 +157,22 @@
         </div>
 
         <div class="modal-body">
-          <div class="comment-input-element">
-            <label for="question-text-input">Question:</label>
+          <div class="question-input-element">
+            <label for="question-text-input">Enter your question:</label>
             <textarea id="question-text-input"></textarea>
           </div>
-          <div class="question-input-element">
-            <label for="comment-tag-input">Tag</label>
-            <input type="text" id="comment-tag-input">
+          <div class="tag_input_element">
+            <label for="tag_input">Tags:</label>
+				<input type="checkbox" id="tag1" name="sports" value="sports">
+					<label for="tag1">Sports</label>
+				<input type="checkbox" id="tag2" name="animals" value="animals">
+					<label for="tag2">Animals</label>
+				<input type="checkbox" id="tag3" name="news" value="news">
+					<label for="tag3">News</label>
+				<input type="checkbox" id="tag4" name="politics" value="politics">
+					<label for="tag4">Politics</label>
+				<input type="checkbox" id="tag5" name="gaming" value="gaming">
+					<label for="tag5">Gaming</label>
           </div>
         </div>
 

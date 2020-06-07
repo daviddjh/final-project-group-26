@@ -10,13 +10,15 @@ body {
   font-family: 'Cabin';
   font-size:20px;
   margin: 0;
-  background-color: #eee;
 
   --sports_color:#f78492;
   --animals-color:#f7b084;
   --news_color:#f7e984;
   --politics_color:#cbf784;
   --gaming_color:#84f7b0;
+
+  background-color: #e5fff6;
+  background-image: url("img/60-lines.png");
 }
 
 a {
@@ -117,36 +119,6 @@ a:focus {
 {
   padding:0;
   margin:0;
-}
-
-/*
-All tags should be paired with the question-icon class and target the <p> element inside. When templating,
-use the first tag listed to choose a class.
-*/
-
-.tag_sports p
-{
-  border:3px var(--sports_color) solid;
-}
-
-.tag_animals p
-{
-  border:3px var(--animals-color) solid;
-}
-
-.tag_news p
-{
-  border:3px var(--news_color) solid;
-}
-
-.tag_politics p
-{
-  border:3px var(--politics_color) solid;
-}
-
-.tag_gaming p
-{
-  border:3px var(--gaming_color) solid;
 }
 
 #sportsnav:hover
@@ -279,6 +251,11 @@ use the first tag listed to choose a class.
   padding: 20px;
 }
 
+.question-text-input
+{
+  padding:20px;
+}
+
 .question-input-element {
   display: flex;
   align-items: center;
@@ -287,7 +264,6 @@ use the first tag listed to choose a class.
 }
 
 .question-input-element label {
-  font-weight: 600;
   flex: 1 75px;
   margin-right: 10px;
 }
@@ -298,10 +274,6 @@ use the first tag listed to choose a class.
   padding: 8px;
   font-size: 20px;
   border: 1px solid #aaa;
-}
-
-.question-input-element textarea {
-  min-height: 64px;
 }
 
 .modal-footer {
@@ -321,17 +293,17 @@ use the first tag listed to choose a class.
   cursor: pointer;
 }
 
-.modal-footer .modal-cancel-button:hover {
+.modal-footer .modal-return-button:hover {
   background-color: #eee;
 }
 
-.modal-footer .modal-accept-button {
-  background-color: #319df6;
+.modal-footer .modal-add-button {
+  background-color: var(--sports_color);
   color: #fff;
 }
 
-.modal-footer .modal-accept-button:hover {
-  background-color: #087dde;
+.modal-footer .modal-add-button:hover {
+  background-color: var(--animals-color);
 }
 
 .error-container {
