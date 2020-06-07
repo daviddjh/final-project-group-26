@@ -28,7 +28,7 @@ a {
 .site-title {
   margin: 0;
   padding: 10px 20px;
-  font-size: 40px;
+  font-size: 45px;
   font-weight: 100;
   background-color:#f78492;
   color: #fff;
@@ -39,7 +39,7 @@ a {
   background-color: #fff;
   font-size: 22px;
   line-height: 22px;
-  height:190px;
+  height:228px;
   width:150px;
   margin:5px;
   padding-top:10px;
@@ -106,11 +106,39 @@ a:focus {
 .question-icon {
   font-size: 26px;
   font-weight:bold;
+  border-radius: 30px;
+  font-size: 30px;
+  background-color: var(--animals-color);
+  color:white;
+}
+
+.tag_sports 
+{
+  background-color:var(--sports_color);
+}
+
+.tag_animals 
+{
+  background-color:var(--animals-color);
+}
+
+.tag_news 
+{
+  background-color:var(--news_color);
+}
+
+.tag_politics 
+{
+  background-color:var(--politics_color);
+}
+
+.tag_gaming
+{
+  background-color:var(--gaming_color);
 }
 
 .question-icon p
 {
-  border:2px black solid;
   border-radius:50%;
   padding:0px 8px;
 }
@@ -165,13 +193,13 @@ a:focus {
 #create-question-button {
   position: fixed;
   right: 30px;
-  bottom: 30px;
-  height: 60px;
-  width: 60px;
+  top: 10px;
+  height: 50px;
+  width: 150px;
   border: none;
   border-radius: 30px;
   font-size: 30px;
-  background-color: var(--sports_color);
+  background-color: var(--animals-color);
   color: #fff;
   cursor: pointer;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
@@ -181,11 +209,42 @@ a:focus {
 #create-question-button:focus {
   right: 27px;
   bottom: 27px;
+  height: 56px;
+  width: 156px;
+  border-radius: 33px;
+  font-size: 36px;
+  background-color: var(--gaming_color);
+}
+
+#create-comment-button
+{
+  position: fixed;
+  right: 100px;
+  bottom: 30px;
+  height: 60px;
+  width: 60px;
+  border: none;
+  border-radius: 30px;
+  font-size: 30px;
+  background-color: var(--sports_color);
+  cursor: pointer;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+#create-comment-button img{
+  width:40px;
+  margin-top:5px;
+}
+
+#create-comment-button:hover
+{
+  right: 97px;
+  bottom: 27px;
   height: 66px;
   width: 66px;
   border-radius: 33px;
   font-size: 36px;
-  background-color: var(--animals-color);
+  background-color: var(--gaming_color);
 }
 
 #create-question-button:focus {
@@ -202,7 +261,8 @@ a:focus {
   background-color: rgba(0, 0, 0, 0.85);
 }
 
-#create-question-modal {
+#create-question-modal
+{
   position: fixed;
   top: 0;
   bottom: 0;
@@ -210,6 +270,23 @@ a:focus {
   right: 0;
   z-index: 1010;
   overflow: scroll;
+}
+
+#create-comment-modal
+{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1010;
+  overflow: scroll;
+}
+
+#comment-text-input
+{
+  width:400px;
+  height:150px;
 }
 
 .hidden {
