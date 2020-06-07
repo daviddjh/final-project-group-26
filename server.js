@@ -4,8 +4,10 @@
  }
 
 //diffrent categories on the site
+/*
 const pages = ['all', 'sports', 'animals', 'news', 
                'gaming', 'tv', 'politics'];
+*/
 
 //importing mongodb values from environment variables
 const mongoHost = process.env.MONGO_HOST;
@@ -15,11 +17,13 @@ const mongoPassword = process.env.MONGO_PASSWORD;
 const mongoDBName = process.env.MONGO_DB_NAME; 
 const mongoURL =
 	'mongodb://' + mongoUser + ':' + mongoPassword + '@' +
-	mongoHost + ':' + mongoPort + '/' + mongoDBName;
+  mongoHost + ':' + mongoPort + '/' + mongoDBName;
+
+console.log(mongoURL);
 
 //setting up server 
 const express = require('express');
-const express = require('body-parser');
+const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const MongoClient = require('mongodb').MongoClient;
 const app = express();
@@ -41,13 +45,27 @@ app.get('/', function(req, res, next){
 //serve a page with many posts
 app.get('/:page', function(req, res, next){
   var page = req.params.page;
-  if(page in pages){
-    res.status(200).render(page, {
-      posts: 'page\'s posts from mongo DB'
-    });
-  } else {
-    next();
-  }
+  var pages = db.collection('pages');
+  //console.log(pages);
+  var pagesCursor = pages.find({});
+  //console.log(pagesCursor);
+  pagesCursor.toArray(function (err, pageDocs){
+    if(err) {
+      res.status(500).send("Error fetching pages from DB")
+    } else {
+      console.log(pageDocs);
+      if(pageDocs.some( e => e.page === page)){
+        res.status(200).sendFile(__dirname + "/public/index.html");
+        /*
+        res.status(200).render(page, {
+          posts: 'page\'s posts from mongo DB'
+        });
+        */
+      } else {
+        next();
+      }
+    }
+  })
 });
 
 //serve a specific post's page with comments
@@ -103,5 +121,5 @@ MongoClient.connect(mongoURL, function (err, client) {
     throw err;
   }
   db = mongoDBDatabase = client.db(mongoDBName);
-  app.listen(port, () => console.log("listening on port ${port}"));
+  app.listen(port, () => console.log("listening on port " + port));
 })
