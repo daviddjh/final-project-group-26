@@ -10,6 +10,7 @@ body {
   font-family: Roboto, Helvetica, sans-serif;
   margin: 0;
   background-color: #eee;
+  font-family:sans-serif;
 }
 
 a {
@@ -21,32 +22,46 @@ a {
   padding: 10px 20px;
   font-size: 30px;
   font-weight: 100;
-  background-color: #319df6;
+  background-color:#f78492;
   color: #fff;
 }
 
 .navbar {
   background-color: #fff;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 22px;
+  position:fixed;
+  height:266px;
+  width:150px;
+  margin:5px;
+  padding-top:10px;
+  padding-bottom:10px;
+}
+
+.Question-Container
+{
+  margin-left:160px;
 }
 
 .navlist {
-  margin: 0 0 0 20px;
+  margin: 0 0 0 0;
   padding: 0;
+  
 }
 
 .navitem {
-  display: inline-block;
+  text-align:center;
+  list-style-type: none;
 }
 
 a {
   color: #343434;
+  width:80px;
 }
 
-a:hover,
-a:focus {
-  color: #319df6;
+.navitem:hover,
+.navitem:focus {
+  background-color: #ffb4bd;
 }
 
 a:focus {
@@ -114,6 +129,12 @@ a:focus {
   border: 1px solid #dadada;
   border-radius: 2px;
   background-color: #fff;
+}
+
+.tag_sport
+{
+  border-top:darkred solid 3px;
+  
 }
 
 .twit-icon {
@@ -295,3 +316,4 @@ a:focus {
   font-size: 36px;
   font-weight: 400;
 }
+
