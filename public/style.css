@@ -7,10 +7,10 @@
 */
 
 body {
-  font-family: Roboto, Helvetica, sans-serif;
+  font-family: 'Cabin';
+  font-size:20px;
   margin: 0;
   background-color: #eee;
-  font-family:sans-serif;
 
   --sports_color:#f78492;
   --animals-color:#f7b084;
@@ -102,7 +102,7 @@ a:focus {
 }
 
 .question-icon {
-  font-size: 24px;
+  font-size: 26px;
   font-weight:bold;
 }
 
@@ -110,11 +110,18 @@ a:focus {
 {
   border:2px black solid;
   border-radius:50%;
-  padding:1px 6px;
+  padding:0px 8px;
+}
+
+#create-question-button p
+{
+  padding:0;
+  margin:0;
 }
 
 /*
-All tags should be paired with the question-icon class and target the <p> element inside.
+All tags should be paired with the question-icon class and target the <p> element inside. When templating,
+use the first tag listed to choose a class.
 */
 
 .tag_sports p
@@ -192,7 +199,7 @@ All tags should be paired with the question-icon class and target the <p> elemen
   border: none;
   border-radius: 30px;
   font-size: 30px;
-  background-color: #ff1010;
+  background-color: var(--sports_color);
   color: #fff;
   cursor: pointer;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.25);
@@ -206,7 +213,7 @@ All tags should be paired with the question-icon class and target the <p> elemen
   width: 66px;
   border-radius: 33px;
   font-size: 36px;
-  background-color: #319df6;
+  background-color: var(--animals-color);
 }
 
 #create-question-button:focus {
