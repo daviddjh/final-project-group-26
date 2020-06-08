@@ -4,10 +4,7 @@
  }
 
 //diffrent categories on the site
-/*
-const pages = ['all', 'sports', 'animals', 'news', 
-               'gaming', 'tv', 'politics'];
-*/
+var pages = [];
 
 //importing mongodb values from environment variables
 const mongoHost = process.env.MONGO_HOST;
@@ -19,13 +16,12 @@ const mongoURL =
 	'mongodb://' + mongoUser + ':' + mongoPassword + '@' +
   mongoHost + ':' + mongoPort + '/' + mongoDBName;
 
-console.log(mongoURL);
-
 //setting up server 
 const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const MongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 const app = express();
 const port = port_number;
 var mongoDBDatabase;
@@ -35,6 +31,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/public/img"));
 
 app.get('/', function(req, res, next){
   res.status(200).render(page, {
@@ -45,9 +42,9 @@ app.get('/', function(req, res, next){
 //serve a page with many posts
 app.get('/:page', function(req, res, next){
   var page = req.params.page;
-  var pages = db.collection('pages');
+  var pagesDB = db.collection('pages');
   //console.log(pages);
-  var pagesCursor = pages.find({});
+  var pagesCursor = pagesDB.find({});
   //console.log(pagesCursor);
   pagesCursor.toArray(function (err, pageDocs){
     if(err) {
@@ -70,16 +67,38 @@ app.get('/:page', function(req, res, next){
 
 //serve a specific post's page with comments
 app.get('/:page/:postID', function(req, res, next){
+  console.log("requested post page");
   var page = req.params.page;
-  var post = req.params.postID;
-  if((page in pages) && page != 'all'){
-    if(postID in 'posts in "page" from mongoDB')
-      res.status(200).render(postPage, {
-        post: post
-      });
-    } else {
-      next();
-    }
+  var postID = req.params.postID;
+  var post_OID = new ObjectID(postID);
+  var postDB = db.collection('posts');
+  var postCursor = postDB.find({_id: post_OID});
+
+  if(pages.includes(page)){
+
+    postCursor.toArray(function (err, postDocs){
+      console.log(postDocs);
+
+      if(err) {
+        res.status(500).send("Error fetching pages from DB")
+      } else {
+          if(postDocs){
+            res.status(200).sendFile(__dirname + "/public/index.html");
+            /*
+            res.status(200).render(postPage, {
+              post: post
+            });
+            */
+          } else {
+            console.log("couldn't find post in DB")
+            next();
+          }
+      }
+    });
+  } else {
+    console.log("couldn't find page" + page + " in DB")
+    next();
+  }
 });
 
 //serve 404 page
@@ -121,5 +140,12 @@ MongoClient.connect(mongoURL, function (err, client) {
     throw err;
   }
   db = mongoDBDatabase = client.db(mongoDBName);
-  app.listen(port, () => console.log("listening on port " + port));
-})
+  var pagesDB = db.collection('pages');
+  var pagesCursor = pagesDB.find({});
+  pagesCursor.toArray(function (err, pageDocs){
+    for (i = 0; i < Object.keys(pageDocs).length; i++ ){
+      pages.push(pageDocs[i].page);
+    }
+    app.listen(port, () => console.log("listening on port " + port));
+  });
+});
