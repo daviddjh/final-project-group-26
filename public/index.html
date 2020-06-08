@@ -17,7 +17,7 @@
 
     <meta charset="utf-8">
     <title>Questions and Answers</title>
-		<link rel="stylesheet" href="/style.css">
+		<link rel="stylesheet" href="style.css">
 		<link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet"> <!-- Title font -->
 		<link href="https://fonts.googleapis.com/css2?family=Cabin&display=swap" rel="stylesheet">     <!--  Main font -->
   </head>
@@ -164,8 +164,8 @@
     </div>
     </div>
 
-		<div id="modal-backdrop" class="hidden"></div>
-		<div id="create-comment-modal" class="hidden">
+		<div id="modal-backdrop" class="hidde"></div>
+		<div id="create-comment-modal" class="hidde">
 			<div class="modal-dialog">
 
 				<div class="modal-header">
@@ -175,6 +175,11 @@
 
 				<div class="modal-body">
 					<div class="question-input-element">
+						<label for="author-text-input">Author:</label>
+						<textarea id="author-text-input"></textarea>
+					</div>
+					<div class="question-input-element">
+
 						<label for="question-text-input">Comment:</label>
 						<textarea id="comment-text-input"></textarea>
 					</div>

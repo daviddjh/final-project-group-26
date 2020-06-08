@@ -322,6 +322,18 @@ a:focus {
 {
   width:400px;
   height:150px;
+
+}
+
+#question-text-imput
+{
+  display:block;
+}
+
+#author-text-input
+{
+  width:200px;
+  height:50px;
 }
 
 .hidden {
