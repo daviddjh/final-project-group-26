@@ -4,10 +4,7 @@
  }
 
 //diffrent categories on the site
-/*
-const pages = ['all', 'sports', 'animals', 'news', 
-               'gaming', 'tv', 'politics'];
-*/
+var pages = [];
 
 //importing mongodb values from environment variables
 const mongoHost = process.env.MONGO_HOST;
@@ -19,13 +16,12 @@ const mongoURL =
 	'mongodb://' + mongoUser + ':' + mongoPassword + '@' +
   mongoHost + ':' + mongoPort + '/' + mongoDBName;
 
-console.log(mongoURL);
-
 //setting up server 
 const express = require('express');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const MongoClient = require('mongodb').MongoClient;
+var ObjectID = require('mongodb').ObjectID;
 const app = express();
 const port = port_number;
 var mongoDBDatabase;
@@ -36,6 +32,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(__dirname + "/public"));
 
+//serve static files
 app.get('/', function(req, res, next){
   res.status(200).render(page, {
     posts: 'all posts from mongo DB'
@@ -45,41 +42,62 @@ app.get('/', function(req, res, next){
 //serve a page with many posts
 app.get('/:page', function(req, res, next){
   var page = req.params.page;
-  var pages = db.collection('pages');
-  //console.log(pages);
-  var pagesCursor = pages.find({});
-  //console.log(pagesCursor);
-  pagesCursor.toArray(function (err, pageDocs){
-    if(err) {
-      res.status(500).send("Error fetching pages from DB")
-    } else {
-      console.log(pageDocs);
-      if(pageDocs.some( e => e.page === page)){
-        res.status(200).sendFile(__dirname + "/public/index.html");
-        /*
-        res.status(200).render(page, {
-          posts: 'page\'s posts from mongo DB'
-        });
-        */
-      } else {
-        next();
-      }
-    }
-  })
+  var pagesDB = db.collection('pages');
+  var pagesCursor = pagesDB.find({});
+
+  // makes sure page is valid
+  if(pages.includes(page)){
+    //temp
+    res.status(200).sendFile(__dirname + "/public/index.html");
+
+    /*
+    //send this page with posts
+    res.status(200).render(page, {
+      posts: 'page\'s posts from mongo DB'
+    });
+    */
+  } else {
+    next();
+  }
 });
 
 //serve a specific post's page with comments
 app.get('/:page/:postID', function(req, res, next){
+  console.log("requested post page");
   var page = req.params.page;
-  var post = req.params.postID;
-  if((page in pages) && page != 'all'){
-    if(postID in 'posts in "page" from mongoDB')
-      res.status(200).render(postPage, {
-        post: post
-      });
-    } else {
-      next();
-    }
+  var postID = req.params.postID;
+  var post_OID = new ObjectID(postID);
+  var postDB = db.collection('posts');
+  var postCursor = postDB.find({_id: post_OID});
+
+  //checks if page is real
+  if(pages.includes(page)){
+
+    postCursor.toArray(function (err, postDocs){
+      console.log(postDocs);
+
+      if(err) {
+        res.status(500).send("Error fetching pages from DB")
+      } else {
+          if(postDocs){
+            //temp
+            res.status(200).sendFile(__dirname + "/public/index.html");
+            /*
+            //send the post's page
+            res.status(200).render(postPage, {
+              post: post
+            });
+            */
+          } else {
+            console.log("couldn't find post in DB")
+            next();
+          }
+      }
+    });
+  } else {
+    console.log("couldn't find page" + page + " in DB")
+    next();
+  }
 });
 
 //serve 404 page
@@ -88,10 +106,19 @@ app.get('*', function(req, res, next) {
 });
 
 //api route for addding a post
-app.post('/:page/addPost', function (req, res){
-  if (req.body && req.body.title && req.body.text && req.body.author && req.params.page in pages) {
+app.post('/addPost', function (req, res){
+  if (req.body && req.body.title && req.body.text && req.body.author && req.body.tags) {
 
     // Add post to DB here.
+    var postDB = db.collection('posts');
+    postDB.insertOne({
+      page: req.body.tags,
+      userID: req.body.author,
+      title: req.body.title,
+      text: req.body.text,
+      votes: 0
+    });
+
 
     res.status(200).send("Post added");
   } else {
@@ -103,17 +130,45 @@ app.post('/:page/addPost', function (req, res){
 
 //api route for addding a comment 
 app.post('/:page/:postID/addComment', function (req, res){
-  if (req.body && req.body.text && req.body.author && req.params.page in pages) {
+  if (req.body && req.body.text && req.body.author) {
 
     // Add comment to DB here.
+    var postID = req.params.postID;
+    var post_OID = new ObjectID(postID);
+    var postDB = db.collection('posts');
+    var postCursor = postDB.find({_id: post_OID});
+    var commentsDB = db.collection('comments');
 
-    res.status(200).send("Comment added");
-  } else {
-    res.status(400).send("Requests to this path must " +
-      "contain a JSON body with a text and author " +
-      "fields.");
-  }
-});
+    //find post
+    postCursor.toArray(function (err, postDocs){
+      console.log(postDocs);
+
+      if(err) {
+        res.status(400).send("Post Not Found");
+      } else {
+          if(postDocs){
+            //add comment
+            commentsDB.insertOne({
+              userID: req.body.author,
+              postID: post_OID,
+              text: req.body.text,
+            });
+          } else {
+            res.status(400).send("Requests to this path must " +
+            "contain a JSON body with title, text, and author " +
+            "fields.");
+          }
+      }
+    });
+
+
+      res.status(200).send("Comment added");
+    } else {
+      res.status(400).send("Requests to this path must " +
+        "contain a JSON body with a text and author " +
+        "fields.");
+    }
+  });
 
 
 MongoClient.connect(mongoURL, function (err, client) {
@@ -121,5 +176,14 @@ MongoClient.connect(mongoURL, function (err, client) {
     throw err;
   }
   db = mongoDBDatabase = client.db(mongoDBName);
-  app.listen(port, () => console.log("listening on port " + port));
-})
+
+  //get pages from db
+  var pagesDB = db.collection('pages');
+  var pagesCursor = pagesDB.find({});
+  pagesCursor.toArray(function (err, pageDocs){
+    for (i = 0; i < Object.keys(pageDocs).length; i++ ){
+      pages.push(pageDocs[i].page);
+    }
+    app.listen(port, () => console.log("listening on port " + port));
+  });
+});
