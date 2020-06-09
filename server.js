@@ -45,10 +45,6 @@ app.get('/:page', function(req, res, next){
   // makes sure page is valid
   if(pages.includes(page)){
 
-    //get pages from DB
-    var pagesDB = db.collection('pages');
-    var pagesCursor = pagesDB.find({});
-
     //get posts from DB
     var postDB = db.collection('posts');
     if(page != "all"){
@@ -57,7 +53,7 @@ app.get('/:page', function(req, res, next){
       var postCursor = postDB.find({}).sort({votes: -1});
     }
 
-    //turn post into array
+    //turn posts into array
     postCursor.toArray(function (err, postDocs){
       console.log(postDocs);
 
@@ -110,31 +106,37 @@ app.get('/:postID', function(req, res, next){
       res.status(500).send("Error fetching post from DB")
     } else {
 
+      //makes sure post is real
+      if(postDocs){
 
-      //turn comments to array 
-      commentCursor.toArray(function (err, commentDocs){
-        if(err) {
-          res.status(500).send("Error fetching comments from DB")
-        } else {
-
-          if(commentDocs){
-            //temp
-            res.status(200).sendFile(__dirname + "/public/index.html");
-            console.log("comments: ");
-            console.log(commentDocs);
-
-            /*
-            //render post's page and send
-            res.status(200).render(postPage, {
-              post: post
-            });
-            */
+        //turn comments to array 
+        commentCursor.toArray(function (err, commentDocs){
+          if(err) {
+            res.status(500).send("Error fetching comments from DB")
           } else {
-            console.log("couldn't find post in DB")
-            next();
+
+            if(commentDocs){
+              //temp
+              res.status(200).sendFile(__dirname + "/public/index.html");
+              console.log("comments: ");
+              console.log(commentDocs);
+
+              /*
+              //render post's page and send
+              res.status(200).render(postPage, {
+                post: post
+              });
+              */
+            } else {
+              console.log("couldn't find comment in DB")
+              next();
+            }
           }
-        }
-      });
+        });
+      } else {
+        console.log("couldn't find post in DB")
+        next();
+      }
     }
   });
 });
