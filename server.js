@@ -83,7 +83,8 @@ app.get('/:page', function(req, res, next){
 
           //render and send the post's page
           res.status(200).render('catpage', {
-            posts: postDocs
+            posts: postDocs,
+            page: page
           });
 
         } else {
@@ -138,6 +139,7 @@ app.get('/:postID', function(req, res, next){
                 console.log(commentDocs);
 
                 res.status(200).render('postPage', {
+                  page: postDocs[0].page[0],
                   postData: postDocs[0],
                   comments: commentDocs,
                 });
