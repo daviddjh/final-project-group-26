@@ -20,7 +20,7 @@ templates['post'] = template({"1":function(container,depth0,helpers,partials,dat
     };
 
   return "<article class=\"question\">\n		<div class=\"question-icon tag_gaming\">\n			<p>?</p>\n		</div>\n		<div class=\"question-content\">\n			<p class=\"question-text\">\n				"
-    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"text") || (depth0 != null ? lookupProperty(depth0,"text") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"text","hash":{},"data":data,"loc":{"start":{"line":7,"column":4},"end":{"line":7,"column":12}}}) : helper)))
+    + container.escapeExpression(((helper = (helper = lookupProperty(helpers,"title") || (depth0 != null ? lookupProperty(depth0,"title") : depth0)) != null ? helper : container.hooks.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":7,"column":4},"end":{"line":7,"column":13}}}) : helper)))
     + "\n			</p>\n			<p class=\"tags\">\n"
     + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"page") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":10,"column":4},"end":{"line":14,"column":13}}})) != null ? stack1 : "")
     + "			</p>\n			\n		</div>\n	</article>";

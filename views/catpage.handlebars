@@ -2,6 +2,10 @@
         
         {{#each posts}}
             {{> post}}
+        {{else}}
+          <main class="error-container">
+            <h3>No posts yet!</h3>
+          </main>
         {{/each}}
 
 
