@@ -20,6 +20,7 @@ const mongoURL =
 //setting up server 
 const express = require('express');
 const bodyParser = require('body-parser');
+const Handlebars = require('handlebars');
 const exphbs = require('express-handlebars');
 const MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
@@ -30,6 +31,21 @@ var mongoDBDatabase;
 app.engine('handlebars', exphbs({defaultLayout: 'main' })); 
 app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
+
+Handlebars.registerHelper('convertTag', function(a){
+  if (a == "sports"){
+    return "Sports";
+  } else if (a == "animals"){
+    return "Animals";
+  } else if (a == "news"){
+    return "News";
+  } else if (a == "politics"){
+    return "Politics";
+  } else if (a == "gaming"){
+    return "Gaming";
+  }
+})
+
 
 //serve static files
 app.use(express.static(__dirname + "/public"));
@@ -63,14 +79,13 @@ app.get('/:page', function(req, res, next){
       } else {
         if(postDocs){
           //temp page
-          res.status(200).sendFile(__dirname + "/public/index.html");
+          //res.status(200).sendFile(__dirname + "/public/index.html");
 
-          /*
           //render and send the post's page
-          res.status(200).render(postPage, {
-            post: post
+          res.status(200).render('catpage', {
+            posts: postDocs
           });
-          */
+
         } else {
           console.log("couldn't find posts in DB")
           next();
@@ -78,7 +93,7 @@ app.get('/:page', function(req, res, next){
       }
     });
   } else {
-    console.log("couldn't find page" + page );
+    console.log("couldn't find page " + page );
     next();
   }
 });
