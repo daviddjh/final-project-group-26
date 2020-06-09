@@ -100,7 +100,7 @@ a:focus {
   border: 1px solid #dadada;
   border-radius: 2px;
   background-color: #fff;
-  
+  position:relative;
 }
 
 .question-icon {
@@ -110,6 +110,11 @@ a:focus {
   font-size: 30px;
   background-color: var(--animals-color);
   color:white;
+}
+
+.question-author
+{
+  font-weight:bold;
 }
 
 .tag_sports 
@@ -182,11 +187,12 @@ a:focus {
 .tags a
 {
   display:inline-block;
+  margin:0;
 }
 
 .question-text
 {
-  padding-top:35px;
+  padding-top:5px;
   padding-bottom:15px;
   font-size:25px;
 }
@@ -216,7 +222,7 @@ a:focus {
 .comment p
 {
   margin:10px;
-  overflow-wrap: ;
+  
 }
 
 .comment-author
@@ -253,9 +259,12 @@ a:focus {
 
 #create-comment-button
 {
-  position: fixed;
+  /*position: fixed;
   right: 100px;
-  bottom: 30px;
+  bottom: 30px;*/
+  position:absolute;
+  top:10px;
+  right:10px;
   height: 60px;
   width: 60px;
   border: none;
@@ -273,12 +282,12 @@ a:focus {
 
 #create-comment-button:hover
 {
-  right: 97px;
+  /*right: 97px;
   bottom: 27px;
   height: 66px;
   width: 66px;
   border-radius: 33px;
-  font-size: 36px;
+  font-size: 36px;*/
   background-color: var(--gaming_color);
 }
 
