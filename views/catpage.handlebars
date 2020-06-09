@@ -2,13 +2,15 @@
         
         {{#each posts}}
             {{> post}}
+        {{else}}
+          <main class="error-container">
+            <h3>No posts yet!</h3>
+          </main>
         {{/each}}
 
 
     </main>
 
-	<button type="button" id="create-question-button"><p>?</p></button>
-	
     <div id="modal-backdrop" class="hidden"></div>
     <div id="create-question-modal" class="hidden">
       <div class="modal-dialog">

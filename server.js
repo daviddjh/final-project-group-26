@@ -83,7 +83,8 @@ app.get('/:page', function(req, res, next){
 
           //render and send the post's page
           res.status(200).render('catpage', {
-            posts: postDocs
+            posts: postDocs,
+            page: page
           });
 
         } else {
@@ -100,65 +101,75 @@ app.get('/:page', function(req, res, next){
 
 //serve a specific post's page with comments
 app.get('/:postID', function(req, res, next){
-  console.log("requested post page");
-
-  //get posts from server
   var postID = req.params.postID;
-  var post_OID = new ObjectID(postID);
-  var postDB = db.collection('posts');
-  var postCursor = postDB.find({_id: post_OID});
+  console.log("String: " + postID + " Type: " + typeof postID);
+  if(ObjectID.isValid(postID)){
 
-  //get commnet from server
-  var commentDB = db.collection('comments');
-  var commentCursor = commentDB.find({postID: post_OID});
+    //get posts from server
+    var post_OID = new ObjectID(postID);
+    var postDB = db.collection('posts');
+    var postCursor = postDB.find({_id: post_OID});
 
-  //turn post into array
-  postCursor.toArray(function (err, postDocs){
-    console.log("post: ");
-    console.log(postDocs);
+    //get commnet from server
+    var commentDB = db.collection('comments');
+    var commentCursor = commentDB.find({postID: post_OID});
 
-    if(err) {
-      res.status(500).send("Error fetching post from DB")
-    } else {
+    //turn post into array
+    postCursor.toArray(function (err, postDocs){
+      console.log("post: ");
+      console.log(postDocs);
 
-      //makes sure post is real
-      if(postDocs){
-
-        //turn comments to array 
-        commentCursor.toArray(function (err, commentDocs){
-          if(err) {
-            res.status(500).send("Error fetching comments from DB")
-          } else {
-
-            if(commentDocs){
-              //temp
-              res.status(200).sendFile(__dirname + "/public/index.html");
-              console.log("comments: ");
-              console.log(commentDocs);
-
-              /*
-              //render post's page and send
-              res.status(200).render(postPage, {
-                post: post
-              });
-              */
-            } else {
-              console.log("couldn't find comment in DB")
-              next();
-            }
-          }
-        });
+      if(err) {
+        res.status(500).send("Error fetching post from DB")
       } else {
-        console.log("couldn't find post in DB")
-        next();
+
+        //makes sure post is real
+        if(postDocs){
+
+          //turn comments to array 
+          commentCursor.toArray(function (err, commentDocs){
+            if(err) {
+              res.status(500).send("Error fetching comments from DB")
+            } else {
+
+              if(commentDocs){
+                //temp
+                //res.status(200).sendFile(__dirname + "/public/index.html");
+                console.log("comments: ");
+                console.log(commentDocs);
+
+                res.status(200).render('postPage', {
+                  page: postDocs[0].page[0],
+                  postData: postDocs[0],
+                  comments: commentDocs,
+                });
+                /*
+                //render post's page and send
+                res.status(200).render(postPage, {
+                  post: post
+                });
+                */
+              } else {
+                console.log("couldn't find comment in DB")
+                next();
+              }
+            }
+          });
+        } else {
+          console.log("couldn't find post in DB")
+          next();
+        }
       }
-    }
-  });
+    });
+  } else { 
+    console.log("object id is invalid");
+    next();
+  }
 });
 
 //serve 404 page
 app.get('*', function(req, res, next) {
-    res.status(404).sendFile(__dirname + "/public/404.html");
+  res.status(200).render('404', {});
 });
 
 //api route for addding a post
