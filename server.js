@@ -46,13 +46,12 @@ Handlebars.registerHelper('convertTag', function(a){
   }
 })
 
-
-//serve static files
-app.use(express.static(__dirname + "/public"));
-
 app.get('/', function(req, res, next){
   res.redirect("/all");
 });
+
+//serve static files
+app.use(express.static(__dirname + "/public"));
 
 //serve a page with many posts
 app.get('/:page', function(req, res, next){
