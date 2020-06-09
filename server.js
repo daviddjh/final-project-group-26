@@ -137,7 +137,9 @@ app.get('/:postID', function(req, res, next){
                 console.log("comments: ");
                 console.log(commentDocs);
 
-                res.status(200).render('404', {
+                res.status(200).render('postPage', {
+                  postData: postDocs[0],
+                  comments: commentDocs,
                 });
                 /*
                 //render post's page and send
@@ -165,7 +167,7 @@ app.get('/:postID', function(req, res, next){
 
 //serve 404 page
 app.get('*', function(req, res, next) {
-    res.status(404).sendFile(__dirname + "/public/404.html");
+  res.status(200).render('404', {});
 });
 
 //api route for addding a post

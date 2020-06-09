@@ -4,9 +4,12 @@
 		</div>
 		<div class="question-content">
 			<p class="question-author">{{author}}</p>
-			<p class="question-text">
-				{{title}}
-			</p>
+			<a href="/{{_id}}">
+				<p class="question-text">
+					{{title}}
+				</p>
+			</a>
+
 			<div class="tags">
 				{{#each page}}
 				<a href="#">
