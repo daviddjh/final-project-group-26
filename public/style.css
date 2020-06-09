@@ -116,6 +116,7 @@ a:focus {
 .question-author
 {
   font-weight:bold;
+  float:right;
 }
 
 .tag_sports 
@@ -278,7 +279,7 @@ a:focus {
   right: 100px;
   bottom: 30px;*/
   position:absolute;
-  top:15px;
+  bottom:15px;
   right:15px;
   height: 60px;
   width: 60px;
