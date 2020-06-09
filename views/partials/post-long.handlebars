@@ -8,15 +8,17 @@
 		<div class="question-content">
 			<p class="question-author">{{author}}</p>
 			<p class="question-text">
-				{{text}}
+				{{title}}
 			</p>
-			<p class="tags">
+            <p class="question-details">{{text}}</p>
+
+            <div class="tags">
 				{{#each page}}
 				<a href="#">
 					{{convertTag this}}
 				</a>
 				{{/each}}
-			</p>
-			
+			</div>
+			 
 		</div>
 	</article>
