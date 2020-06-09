@@ -1,0 +1,47 @@
+    <main class="Question-Container">
+        
+        {{#each posts}}
+            {{> post}}
+        {{/each}}
+
+
+    </main>
+
+	<button type="button" id="create-question-button"><p>?</p></button>
+	
+    <div id="modal-backdrop" class="hidden"></div>
+    <div id="create-question-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h3>Create a Question</h3>
+          <button type="button" class="modal-close-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="question-input-element">
+            <label for="question-text-input">Enter your question:</label>
+            <textarea id="question-text-input"></textarea>
+          </div>
+          <div class="tag_input_element">
+            <label for="tag_input">Tags:</label>
+				<input type="checkbox" id="tag1" name="sports" value="sports">
+					<label for="tag1">Sports</label>
+				<input type="checkbox" id="tag2" name="animals" value="animals">
+					<label for="tag2">Animals</label>
+				<input type="checkbox" id="tag3" name="news" value="news">
+					<label for="tag3">News</label>
+				<input type="checkbox" id="tag4" name="politics" value="politics">
+					<label for="tag4">Politics</label>
+				<input type="checkbox" id="tag5" name="gaming" value="gaming">
+					<label for="tag5">Gaming</label>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="modal-return-button">Return</button>
+          <button type="button" class="modal-add-button">Create Question</button>
+        </div>
+
+    </div>
+    </div>
