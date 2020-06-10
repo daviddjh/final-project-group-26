@@ -33,7 +33,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 
 Handlebars.registerHelper('convertTag', function(a){
-  if (a == "sports"){
+  if (a === "sports"){
     return "Sports";
   } else if (a == "animals"){
     return "Animals";
@@ -44,7 +44,7 @@ Handlebars.registerHelper('convertTag', function(a){
   } else if (a == "gaming"){
     return "Gaming";
   }
-})
+});
 
 app.get('/', function(req, res, next){
   res.redirect("/all");
@@ -63,7 +63,7 @@ app.get('/:page', function(req, res, next){
     //get posts from DB
     var postDB = db.collection('posts');
     if(page != "all"){
-      var postCursor = postDB.find({page: {$in: [page]}}).sort({votes: -1});
+      var postCursor = postDB.find({tag: {$in: [page]}}).sort({votes: -1});
     } else {
       var postCursor = postDB.find({}).sort({votes: -1});
     }
@@ -138,7 +138,7 @@ app.get('/:postID', function(req, res, next){
                 console.log(commentDocs);
 
                 res.status(200).render('postPage', {
-                  page: postDocs[0].page[0],
+                  page: postDocs[0].tag[0],
                   postData: postDocs[0],
                   comments: commentDocs,
                 });
@@ -173,20 +173,29 @@ app.get('*', function(req, res, next) {
 
 //api route for addding a post
 app.post('/addPost', function (req, res){
-  if (req.body && req.body.title && req.body.text && req.body.author && req.body.tags) {
+  if (req.body && req.body.title && req.body.text && req.body.userID && req.body.tag) {
 
     // Add post to DB here.
     var postDB = db.collection('posts');
     postDB.insertOne({
-      page: req.body.tags,
-      userID: req.body.author,
+      tag: req.body.tag,
+      userID: req.body.userID,
       title: req.body.title,
       text: req.body.text,
       votes: 0
+    }, function(err, insertedPost){
+
+      if(err){
+
+        res.status(400).send("Error adding post to DB");
+
+      } else {
+        res.status(200).send(insertedPost._id);
+      }
+
     });
 
 
-    res.status(200).send("Post added");
   } else {
     res.status(400).send("Requests to this path must " +
       "contain a JSON body with title, text, and author " +
@@ -195,8 +204,8 @@ app.post('/addPost', function (req, res){
 });
 
 //api route for addding a comment 
-app.post('/:page/:postID/addComment', function (req, res){
-  if (req.body && req.body.text && req.body.author) {
+app.post('/:postID/addComment', function (req, res){
+  if (req.body && req.body.text && req.body.userID) {
 
     // Add comment to DB here.
     var postID = req.params.postID;
@@ -216,7 +225,7 @@ app.post('/:page/:postID/addComment', function (req, res){
           if(postDocs){
             //add comment
             commentsDB.insertOne({
-              userID: req.body.author,
+              userID: req.body.userID,
               postID: post_OID,
               text: req.body.text,
             });

@@ -20,7 +20,7 @@ templates['post'] = template({"1":function(container,depth0,helpers,partials,dat
     };
 
   return "<article class=\"question\">\n		<div class=\"question-icon tag_"
-    + alias4(((helper = (helper = lookupProperty(helpers,"page") || (depth0 != null ? lookupProperty(depth0,"page") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"page","hash":{},"data":data,"loc":{"start":{"line":2,"column":32},"end":{"line":2,"column":40}}}) : helper)))
+    + alias4(((helper = (helper = lookupProperty(helpers,"tag") || (depth0 != null ? lookupProperty(depth0,"tag") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"tag","hash":{},"data":data,"loc":{"start":{"line":2,"column":32},"end":{"line":2,"column":39}}}) : helper)))
     + "\">\n			<p>?</p>\n		</div>\n		<div class=\"question-content\">\n			<p class=\"question-author\">"
     + alias4(((helper = (helper = lookupProperty(helpers,"userID") || (depth0 != null ? lookupProperty(depth0,"userID") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"userID","hash":{},"data":data,"loc":{"start":{"line":6,"column":30},"end":{"line":6,"column":40}}}) : helper)))
     + "</p>\n			<a href=\"/"
@@ -28,7 +28,7 @@ templates['post'] = template({"1":function(container,depth0,helpers,partials,dat
     + "\">\n				<p class=\"question-text\">\n					"
     + alias4(((helper = (helper = lookupProperty(helpers,"title") || (depth0 != null ? lookupProperty(depth0,"title") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data,"loc":{"start":{"line":9,"column":5},"end":{"line":9,"column":14}}}) : helper)))
     + "\n				</p>\n			</a>\n\n			<div class=\"tags\">\n"
-    + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"page") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":14,"column":4},"end":{"line":18,"column":13}}})) != null ? stack1 : "")
+    + ((stack1 = lookupProperty(helpers,"each").call(alias1,(depth0 != null ? lookupProperty(depth0,"tag") : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data,"loc":{"start":{"line":14,"column":4},"end":{"line":18,"column":13}}})) != null ? stack1 : "")
     + "			</div>\n			\n		</div>\n	</article>\n";
 },"useData":true});
 })();

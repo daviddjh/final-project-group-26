@@ -2,13 +2,15 @@
 
     {{> post-long postData}}
 
-    {{#each comments}}
-        {{> comment}}
-    {{else}}
-        <main class="error-container">
-        <h3>No Comments yet!</h3>
-        </main>
-    {{/each}}
+    <div class="Comment-Container">
+        {{#each comments}}
+            {{> comment}}
+        {{else}}
+            <main id="no-comments" class="error-container">
+            <h3>No Comments yet!</h3>
+            </main>
+        {{/each}}
+    </div>
 
     </main>
 
@@ -41,7 +43,4 @@
 			</div>
 		</div>
 
-
-  </body>
-
-</html>
+    <script src="/postPage.js" charset="utf-8" defer></script>
