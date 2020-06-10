@@ -177,20 +177,25 @@ app.post('/addPost', function (req, res){
 
     // Add post to DB here.
     var postDB = db.collection('posts');
-    postDB.insertOne({
+    var postData = {
       tag: req.body.tag,
       userID: req.body.userID,
       title: req.body.title,
       text: req.body.text,
       votes: 0
-    }, function(err, insertedPost){
+    };
+    postDB.insertOne(postData, function(err, insertedPost){
 
       if(err){
 
         res.status(400).send("Error adding post to DB");
 
       } else {
-        res.status(200).send(insertedPost._id);
+
+        var postDataID = new ObjectID(insertedPost.insertedId);
+        console.log(postDataID);
+
+        res.status(200).send(postDataID);
       }
 
     });
