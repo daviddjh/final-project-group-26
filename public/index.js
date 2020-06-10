@@ -1,125 +1,84 @@
-function insertQuestion(questionText, questionAuthor) {
-
-   // Create a new question <article> element.
-   var questionElement = document.createElement('article');
-   questionElement.classList.add('question');
-
-   /*
-    * Create a new question-icon <div> element, insert bullborn with innerHTML
-    * (which is safe in this case because we're not dealing with user input),
-    * and add the div into the new question element.
-    */
-   var questionIconElem = document.createElement('div');
-   questionIconElem.classList.add('question-icon');
-   questionIconElem.innerHTML = '<i class="fa fa-bullhorn"></i>';
-   questionElem.appendChild(questionIconElem);
-
-   /*
-    * Create a new question-content <div> element, and insert it into the new question
-    * element.
-    */
-   var questionContentElem = document.createElement('div');
-   questionContentElem.classList.add('question-content');
-   questionElem.appendChild(questionContentElem);
-
-   /*
-    * Create a new question-text <p> element and add to it a text node containing
-    * the question text value specified by the user.  Add the question-text <p> element
-    * into the question-content element.
-    */
-   var questionTextNode = document.createTextNode(questionText);
-   var questionTextElem = document.createElement('p');
-   questionTextElem.classList.add('question-text');
-   questionTextElem.appendChild(questionTextNode);
-   questionContentElem.appendChild(questionTextElem);
-
-   /*
-    * Create a new question-author <p> element and add to it an <a> element
-    * that itself contains a question node with the question author value
-    * specified by the user.  Add the question-author <p> element into the
-    * question-content element.
-    */
-   var questionAuthorTextNode = document.createTextNode(questionAuthor);
-   var questionAuthorLinkElem = document.createElement('a');
-   questionAuthorLinkElem.href = '#';
-   questionAuthorLinkElem.appendChild(questionAuthorTextNode);
-   var questionAuthorElem = document.createElement('p');
-   questionAuthorElem.classList.add('question-author');
-   questionAuthorElem.appendChild(questionAuthorLinkElem);
-   questionContentElem.appendChild(questionAuthorElem);
-
-   var questionContainer = document.querySelector('main.question-container');
-   questionContainer.appendChild(questionElem);
-
+function insertNewQuestion(questionText, questionAuthor) {
+  var newQuestion = {
+    content: questioncontent,
+    tags: tags
+  };
+  var newQuestion = Handlebars.templates.Question-Container(QuestionContainer);
+  return newQuestion;
 }
-/*
- * This function checks whether all of the required inputs were supplied by
- * the user and, if so, inserts a new question into the page using these inputs.
- * If the user did not supply a required input, they instead recieve an alert,
- * and no new question is inserted.
- */
+
+
+
 function handleModalAcceptClick() {
 
-  var questionText = document.getElementById('question-text-input').value;
-  var questionAuthor = document.getElementById('question-author-input').value;
 
-  /*
-   * Only generate the new question if the user supplied values for both the question
-   * text and the question attribution.  Give them an alert if they didn't.
-   */
-  if (questionText && questionAuthor) {
-
-    allquestions.push({
-      text: questionText,
-      author: questionAuthor
-    });
-
-    clearSearchAndReinsertquestions();
-
-    hideCreatequestionModal();
-
-  } else {
-
-    alert('You must specify both the text and the author of the question!');
-
-  }
 }
-var modalScreen = document.getElementsByClassName("modal-backdrop");
-
-window.addEventListener('click', function (event){
-  console.log("the window was clicked:", event.target);
-});
 
 
-var createquestion = document.getElementById("create-question-button");
-createquestion.addEventListener('click', function(event) {
-  console.log("== The create question button was clicked");
-  var modal = document.createElement('div');
-  modal.setAttribute('id',"create-question-modal");
-  modalText = document.getElementById("create-question-modal");
-  modalText.style.display = "block";
-  document.getElementById("question-text-input").value = ""
+/*
+ * This function clears the current search term, causing all questions to be
+ * re-inserted into the DOM.
+ */
+function clearSearchAndReinsertquestions() {
 
-});
+  document.getElementById('navbar-search-input').value = "";
+  doSearchUpdate();
 
-var modelClose = document.getElementsByClassName("modal-close-button")[0];
-modelClose.addEventListener('click', function(event) {
- modalText = document.getElementById("create-question-modal");
- modalText.style.display = "none";
+}
 
-});
 
-var modelExit = document.getElementsByClassName("modal-cancel-button")[0];
-modelExit.addEventListener('click', function(event) {
- modalText = document.getElementById("create-question-modal");
- modalText.style.display = "none";
+/*
+ * This function shows the modal to create a question when the "create question"
+ * button is clicked.
+ */
+function showCreatequestionModal() {
 
-});
 
-var modelAccept = document.getElementsByClassName("modal-accept-button")[0];
-modelAccept.addEventListener('click', function(event) {
- questionText = document.getElementById("question-text-input");
- if (questionText.value.length == 0) {
-   window.alert("please enter some text");
- }
-});
+}
+
+
+/*
+ * This function clears any value present in any of the question input elements.
+ */
+function clearquestionInputValues() {
+
+
+}
+
+
+/*
+ * This function hides the modal to create a question and clears any existing
+ * values from the input fields whenever any of the modal close actions are
+ * taken.
+ */
+function hideCreatequestionModal() {
+
+}
+
+
+/*
+ * A function that determines whether a given question matches a search query.
+ * Returns true if the question matches the query and false otherwise.
+ */
+function questionMatchesSearchQuery(question, searchQuery) {
+}
+
+
+/*
+ * Perform a search over over all the questions based on the search query the user
+ * entered in the navbar.  Only display questions that match the search query.
+ * Display all questions if the search query is empty.
+ */
+function doSearchUpdate() {
+
+
+
+}
+
+
+
+function parsequestionElem(questionElem) {
+
+
+
+}
